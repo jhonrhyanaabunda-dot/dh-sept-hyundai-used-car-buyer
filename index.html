@@ -396,12 +396,6 @@
     font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
     color: var(--blue-deep);
   }
-  .hero-photo.full-bleed .credit {
-    position: absolute;
-    bottom: 24px; right: clamp(20px, 4vw, 56px);
-    color: var(--white);
-    text-shadow: 0 1px 8px rgba(0,0,0,.45);
-  }
 
   /* ---------- Article body grid (sticky TOC + column) ---------- */
   .article-grid {
@@ -481,7 +475,7 @@
   .gutter .chip .sub { font-size: 12px; color: var(--muted); margin-top: 4px; }
 
   /* ---------- Section + typography ---------- */
-  section.s { scroll-margin-top: 32px; padding: 64px 0; border-top: 1px solid var(--rule); }
+  section.s { scroll-margin-top: 32px; padding: 52px 0; border-top: 1px solid var(--rule); }
   section.s:first-of-type { border-top: none; padding-top: 8px; }
   .section-num {
     display: flex; align-items: baseline; gap: 16px;
@@ -541,6 +535,7 @@
     letter-spacing: -0.005em;
     text-wrap: balance;
   }
+  blockquote.pull:last-child { margin-bottom: 0; border-bottom: none; }
   blockquote.pull cite {
     display: block;
     margin-top: 24px;
@@ -612,7 +607,8 @@
   .spec-strip .item:last-child { border-right: none; padding-right: 16px; }
   .spec-strip .num { font-family: var(--display); font-size: 38px; font-weight: 600; line-height: 1.05; color: var(--blue-deep); letter-spacing: -0.015em; font-feature-settings: "lnum"; min-height: calc(38px * 1.05); margin-bottom: 14px; }
   .spec-strip .num small { font-size: 14px; color: var(--ink-soft); font-weight: 400; margin-left: 3px; letter-spacing: 0; }
-  .spec-strip .lbl { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-top: 0; line-height: 1.5; min-height: calc(11px * 1.5 * 2); display: flex; align-items: flex-start; justify-content: center; text-align: center; }
+  .spec-strip .lbl { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-top: 0; line-height: 1.5; min-height: calc(11px * 1.5 * 2);
+    display: block; text-align: center; }
 
   /* Stats variant: short numeric headers, bigger type, centered, modest breakout */
   .spec-strip.stats {
@@ -625,7 +621,8 @@
   .spec-strip.stats .item:last-child { padding-right: 16px; }
   .spec-strip.stats .num { font-size: 44px; line-height: 1; min-height: 48px; margin-bottom: 24px; white-space: nowrap; }
   .spec-strip.stats .num small { font-size: 15px; letter-spacing: 0; margin-left: 4px; }
-  .spec-strip.stats .lbl { min-height: calc(11px * 1.5 * 5); display: flex; align-items: flex-start; justify-content: center; text-align: center; }
+  .spec-strip.stats .lbl { min-height: calc(11px * 1.5 * 5);
+    display: block; text-align: center; }
 
   /* ---------- Safety badge ---------- */
   .safety-banner {
@@ -729,11 +726,12 @@
   }
   .cross-table table {
     width: 100%;
+    table-layout: fixed;
     border-collapse: collapse;
     font-size: 14px;
   }
   .cross-table thead th {
-    text-align: center;
+    text-align: left;
     padding: 18px 16px;
     font-size: 11px;
     letter-spacing: 0.16em;
@@ -744,7 +742,6 @@
     background: var(--paper-2);
     vertical-align: middle;
   }
-  .cross-table thead th:first-child { text-align: left; }
   .cross-table thead th .model {
     display: block;
     font-family: var(--display);
@@ -786,9 +783,10 @@
     text-transform: uppercase;
     color: var(--muted);
     font-weight: 600;
-    width: 22%;
+    width: 27%;
     background: var(--paper-2);
   }
+  .cross-table col.compare { width: 36.5%; }
   .cross-table tbody td {
     font-family: var(--display);
     font-size: 15px;
@@ -1279,7 +1277,7 @@
   <div class="wrap">
     <div class="eyebrow"><span class="pip"></span> Used &amp; CPO · Dalton Hyundai National City</div>
     <h1>The Hyundai used car <em>buying guide.</em></h1>
-    <p class="deck">A Hyundai used car is a pre-owned Hyundai vehicle inspected and reconditioned before resale. At Dalton Hyundai National City, our used inventory ranges from recent off-lease models to budget commuters, and Hyundai Certified Pre-Owned units carry factory-backed coverage. This guide explains how to shop, what to verify, and which checks matter most. See live used inventory at hyundaidalton.com or call our sales team at <a class="tel" href="tel:+16194523217">(619) 452-3217</a>.</p>
+    <p class="deck">Our used inventory runs from recent off-lease models to budget commuters, and Certified Pre-Owned units carry factory-backed coverage. See live inventory at hyundaidalton.com or call <a class="tel" href="tel:+16194523217">(619) 452-3217</a>.</p>
 
     <div class="hero-meta">
       <div class="item"><div class="lbl">Address</div><div class="val">3150 National City Blvd<small>National City, CA 91950</small></div></div>
@@ -1297,7 +1295,6 @@
          fetchpriority="high"
          width="1600"
          height="900" />
-    <span class="credit">DALTON HYUNDAI NATIONAL CITY · USED &amp; CPO</span>
     <figcaption class="visually-hidden">Used and Hyundai Certified Pre-Owned vehicles at Dalton Hyundai National City, for sale near San Diego, serving Chula Vista, El Cajon, Kearny Mesa, and Imperial Beach.</figcaption>
   </figure>
 </header>
@@ -1333,7 +1330,9 @@
         <p class="lede">Not every pre-owned Hyundai is the same. We stock three broad tiers, and the difference matters most for warranty.</p>
         <p>Standard used cars span many model years and price points. Hyundai Certified Pre-Owned (CPO) cars meet a factory inspection standard and add manufacturer-backed warranty coverage. A third group is non-Hyundai trade-ins we accept and recondition.</p>
 
-        <p>The difference matters most for warranty. Hyundai's CPO program is detailed on <a href="https://www.hyundaiusa.com/us/en/certified-used-vehicles" rel="noopener" target="_blank">hyundaiusa.com</a>. Standard used cars may still carry the balance of the original Hyundai 5-year/60,000-mile new-vehicle limited warranty and 10-year/100,000-mile powertrain limited warranty, depending on age and mileage. We confirm remaining coverage on each vehicle before it lists.</p>
+        <p>The difference matters most for warranty. Hyundai's CPO program is detailed on <a href="https://www.hyundaiusa.com/us/en/certified-used-vehicles" rel="noopener" target="_blank">hyundaiusa.com</a>. Standard used cars may still carry the balance of the original 5-year/60,000-mile new-vehicle and 10-year/100,000-mile powertrain warranty.</p>
+
+        <p>We confirm remaining coverage on each vehicle before it lists.</p>
 
         <div class="trims">
           <article class="trim flagship">
@@ -1378,7 +1377,7 @@
         <p class="lede">A used Hyundai sidesteps the steepest part of depreciation, and that's where most of the value hides.</p>
         <p>New cars lose the most value in the first two to three years. Buying a two- or three-year-old Hyundai shifts that loss to the first owner. You get a recent platform at a lower price.</p>
 
-        <p>Hyundai's reputation helps here. Independent reviewers track reliability and resale closely. For third-party scoring, check <a href="https://www.consumerreports.org" rel="noopener" target="_blank">Consumer Reports</a> and resale data on <a href="https://www.kbb.com" rel="noopener" target="_blank">kbb.com</a>. We do not quote our own reliability rankings; we point you to the sources that measure them.</p>
+        <p>Hyundai's reputation helps here, and independent reviewers track reliability and resale closely. For third-party scoring, check <a href="https://www.consumerreports.org" rel="noopener" target="_blank">Consumer Reports</a> and resale data on <a href="https://www.kbb.com" rel="noopener" target="_blank">kbb.com</a>. We don't quote our own rankings; we point you to the sources that measure them.</p>
 
         <p>Counterintuitively, the cheapest used Hyundai on a lot is not always the best buy. A slightly pricier CPO unit with remaining factory warranty often costs less over three years once you account for repair risk. We walk buyers through that math instead of just the monthly payment.</p>
 
@@ -1403,6 +1402,7 @@
         <!-- Desktop: comparison table -->
         <div class="cross-table">
           <table>
+            <colgroup><col><col class="compare"><col class="compare"></colgroup>
             <thead>
               <tr>
                 <th><span class="visually-hidden">Factor</span></th>
@@ -1421,27 +1421,27 @@
               <tr>
                 <th>Inspection</th>
                 <td data-label="Standard used Hyundai">Our dealer inspection</td>
-                <td class="featured" data-label="Hyundai Certified Pre-Owned">Factory CPO inspection standard</td>
+                <td class="featured" data-label="Hyundai Certified Pre-Owned">Factory CPO inspection</td>
               </tr>
               <tr>
                 <th>Warranty</th>
-                <td data-label="Standard used Hyundai">Balance of original factory warranty (if any)</td>
-                <td class="featured" data-label="Hyundai Certified Pre-Owned">Manufacturer-backed CPO coverage</td>
+                <td data-label="Standard used Hyundai">Remaining factory cover</td>
+                <td class="featured" data-label="Hyundai Certified Pre-Owned">Maker-backed CPO cover</td>
               </tr>
               <tr>
                 <th>Eligibility</th>
-                <td data-label="Standard used Hyundai">Wide range of years/mileage</td>
-                <td class="featured" data-label="Hyundai Certified Pre-Owned">Limited by Hyundai age/mileage rules</td>
+                <td data-label="Standard used Hyundai">Wide year/mileage range</td>
+                <td class="featured" data-label="Hyundai Certified Pre-Owned">Hyundai age/mile limits</td>
               </tr>
               <tr>
                 <th>Vehicle history</th>
                 <td data-label="Standard used Hyundai">Provided on request</td>
-                <td class="featured" data-label="Hyundai Certified Pre-Owned">Provided as part of program</td>
+                <td class="featured" data-label="Hyundai Certified Pre-Owned">Included in the program</td>
               </tr>
               <tr>
                 <th>Price</th>
                 <td data-label="Standard used Hyundai">Typically lower</td>
-                <td class="featured" data-label="Hyundai Certified Pre-Owned">Typically higher for added coverage</td>
+                <td class="featured" data-label="Hyundai Certified Pre-Owned">Higher, for the coverage</td>
               </tr>
             </tbody>
           </table>
@@ -1457,7 +1457,7 @@
             </div>
             <dl class="cross-card__specs">
               <div class="cross-card__row"><dt>Inspection</dt><dd>Factory CPO standard</dd></div>
-              <div class="cross-card__row"><dt>Warranty</dt><dd>Manufacturer-backed CPO coverage</dd></div>
+              <div class="cross-card__row"><dt>Warranty</dt><dd>Maker-backed CPO cover</dd></div>
               <div class="cross-card__row"><dt>Eligibility</dt><dd>Hyundai age/mileage rules</dd></div>
               <div class="cross-card__row"><dt>Vehicle history</dt><dd>Part of the program</dd></div>
               <div class="cross-card__row"><dt>Price</dt><dd>Higher, for added coverage</dd></div>
@@ -1472,7 +1472,7 @@
             <dl class="cross-card__specs">
               <div class="cross-card__row"><dt>Inspection</dt><dd>Our dealer inspection</dd></div>
               <div class="cross-card__row"><dt>Warranty</dt><dd>Balance of original (if any)</dd></div>
-              <div class="cross-card__row"><dt>Eligibility</dt><dd>Wide range of years/mileage</dd></div>
+              <div class="cross-card__row"><dt>Eligibility</dt><dd>Wide year/mileage range</dd></div>
               <div class="cross-card__row"><dt>Vehicle history</dt><dd>Provided on request</dd></div>
               <div class="cross-card__row"><dt>Price</dt><dd>Typically lower</dd></div>
             </dl>
@@ -1489,11 +1489,11 @@
         <p class="lede">Our sales team walked the used row this week and pulled units across several segments: compact sedans, the Tucson and Santa Fe in the SUV aisle, and a few non-Hyundai trades.</p>
         <p>On three off-lease sedans, our team inspected tire wear and verified the service history matched the odometer before the cars were listed.</p>
 
-        <p>Last month, a shopper came in convinced a CPO Tucson was overpriced next to a private-party listing online. Our sales team pulled both histories side by side. The private car had an open recall and no service records. We confirmed the CPO unit's factory coverage and inspection, and the gap in long-term cost made the decision clear.</p>
+        <p>Last month a shopper came in convinced a CPO Tucson was overpriced next to a private-party listing. Our team pulled both histories side by side, and the private car had an open recall and no service records. Once we confirmed the CPO unit's coverage and inspection, the long-term cost gap made the decision clear.</p>
 
-        <p>Most buyers assume a low odometer is the most important number. Counterintuitively, service consistency matters more. A 60,000-mile Hyundai with complete records often outlasts a 30,000-mile car that skipped maintenance. Our team found this pattern repeatedly when we cross-checked history reports against physical inspection.</p>
+        <p>Most buyers assume a low odometer is the most important number, but service consistency matters more. A 60,000-mile Hyundai with complete records often outlasts a 30,000-mile car that skipped maintenance. We found that pattern repeatedly cross-checking history reports against inspection.</p>
 
-        <p>As of September 2026, used inventory turns quickly in our market, so the exact units on the lot change week to week. Every Dalton used car gets a Complimentary In-Drive Alignment Check and Tire Check at each service visit, part of the Dalton VIP Advantage Program. To confirm a specific car is still available, call our sales team at <a class="tel" href="tel:+16194523217">(619) 452-3217</a>.</p>
+        <p>As of September 2026, used inventory turns quickly, so the units on the lot change week to week. Every Dalton used car gets a complimentary in-drive alignment and tire check at each service visit under the Dalton VIP Advantage Program. To confirm a specific car, call <a class="tel" href="tel:+16194523217">(619) 452-3217</a>.</p>
 
         <blockquote class="pull">
           A 60,000-mile Hyundai with complete records often outlasts a 30,000-mile car that skipped maintenance. Service consistency matters more than the odometer.
@@ -1546,7 +1546,7 @@
         <p class="lede">Used-car financing works much like new-car financing, with rates that vary by credit, term, and the vehicle's age.</p>
         <p>We do not publish fixed rates here because offers change. Ask us for current offers and we will match terms to your situation.</p>
 
-        <p>Start a pre-qualification on our <a href="https://www.hyundaidalton.com/finance.aspx" rel="noopener">financing</a> page. If you have a trade-in, bring it; applying its value to a used Hyundai can lower your monthly payment more than you expect. For valuation context before you come in, <a href="https://www.edmunds.com" rel="noopener" target="_blank">Edmunds</a> and <a href="https://www.kbb.com" rel="noopener" target="_blank">Kelley Blue Book</a> both publish trade-in and market-value ranges you can check against your current vehicle.</p>
+        <p>Start a pre-qualification on our <a href="https://www.hyundaidalton.com/finance.aspx" rel="noopener">financing</a> page, and bring your trade-in; its value can lower your monthly payment more than you expect. For context, <a href="https://www.edmunds.com" rel="noopener" target="_blank">Edmunds</a> and <a href="https://www.kbb.com" rel="noopener" target="_blank">Kelley Blue Book</a> publish trade-in and market-value ranges.</p>
 
         <p style="font-size:12px; color:var(--muted); letter-spacing:0.02em; line-height:1.6; border-top:1px solid var(--rule-soft); padding-top:18px; margin-top:24px;"><strong style="color:var(--ink-soft); letter-spacing:0.1em; text-transform:uppercase; font-size:10px;">Note ·</strong> Financing offers change. Ask our team for current terms, or start a pre-qualification at hyundaidalton.com/finance.aspx before you visit.</p>
       </section>
@@ -1583,7 +1583,7 @@
         <h2 class="section-h">Where we are, and <em>who we serve</em>.</h2>
         <p class="lede">We are at <strong>3150 National City Blvd, National City, CA 91950</strong>, an easy drive for shoppers across San Diego County.</p>
 
-        <p>Buyers come to us from National City, San Diego, Chula Vista, El Cajon, Kearny Mesa, and Imperial Beach, all within a short hop of our location on National City Blvd. From the South Bay you're a few minutes up the I-5; from El Cajon or Kearny Mesa, the 805 and the 8 bring you right in. If you've been hunting a used Hyundai anywhere in the metro, we're a convenient stop right off the freeway.</p>
+        <p>Buyers come to us from National City, San Diego, Chula Vista, El Cajon, Kearny Mesa, and Imperial Beach. From the South Bay you're a few minutes up the I-5; from El Cajon or Kearny Mesa, the 805 and the 8 bring you right in.</p>
 
         <div class="spec-strip stats">
           <div class="item"><a class="tel" href="https://www.google.com/search?q=dalton+hyundai+national+city&amp;oq=dalton+hyundai&amp;gs_lcrp=EgZjaHJvbWUqCQgAEEUYOxiABDIJCAAQRRg7GIAEMgYIARBFGDsyBwgCEAAYgAQyBwgDEAAYgAQyBwgEEAAYgAQyBwgFEAAYgAQyBggGEEUYPDIGCAcQRRg80gEIMzQ2MWowajeoAgCwAgA&amp;sourceid=chrome&amp;source=chrome.ob&amp;ie=UTF-8#lrd=0x80d9520d83a0b671:0xe6ab01ea0342063,1,,,," target="_blank" rel="noopener"><div class="num">4.3<small> ★</small></div><div class="lbl">Google rating across 2,596 reviews</div></a></div>
@@ -1599,7 +1599,9 @@
           <li><strong>Parts:</strong> Mon-Fri 7:00 AM - 6:00 PM · Sat 8:00 AM - 3:00 PM · Sun closed</li>
         </ul>
 
-        <p>One of the conveniences of buying here: we're open for Sunday sales from 10:00 AM to 6:00 PM, so you can shop the used row on a day most people actually have free. Service and parts are closed Sundays, so if you need a question answered by a technician, plan a Saturday visit before the 5:00 PM close. Reach sales at <a class="tel" href="tel:+16194523217">(619) 452-3217</a>, service at <a class="tel" href="tel:+16193145768">(619) 314-5768</a>, and parts at <a class="tel" href="tel:+16196040487">(619) 604-0487</a>.</p>
+        <p>We're open for Sunday sales from 10:00 AM to 6:00 PM, so you can shop the used row on a day most people have free. Service and parts are closed Sundays; for a technician's answer, plan a Saturday visit before the 5:00 PM close.</p>
+
+        <p>Reach sales at <a class="tel" href="tel:+16194523217">(619) 452-3217</a>, service at <a class="tel" href="tel:+16193145768">(619) 314-5768</a>, and parts at <a class="tel" href="tel:+16196040487">(619) 604-0487</a>.</p>
       </section>
     </div>
 
@@ -1637,7 +1639,7 @@
   <div class="wrap">
     <div class="eyebrow">Dalton Hyundai National City</div>
     <h2>A dealership you can <em>check out before you trust it</em>.</h2>
-    <p class="band-deck">Formerly Frank Hyundai, Dalton Hyundai National City has long served drivers throughout San Diego, Chula Vista, El Cajon, Kearny Mesa, and Imperial Beach, led by General Manager Cedric Butler, with sales managed by Sergio Martell and Mark Moore.</p>
+    <p class="band-deck">Formerly Frank Hyundai, Dalton Hyundai National City serves drivers across San Diego, Chula Vista, El Cajon, and Imperial Beach. General Manager Cedric Butler leads the store, with sales managed by Sergio Martell and Mark Moore.</p>
 
     <div class="trust-grid">
       <div class="item">
@@ -1794,7 +1796,13 @@
           <div style="font-size:12px; color:var(--muted); margin-top:10px; letter-spacing:0.04em;">Dalton Hyundai National City · 3150 National City Blvd, National City, CA 91950</div>
         </div>
 
-        <p style="font-size:15px; color:var(--ink-soft); max-width:660px;">Hyundai Certified Pre-Owned program details described from Hyundai's published information at hyundaiusa.com; terms change, so we verify each car's eligibility at intake. Open recalls should be checked by VIN at nhtsa.gov/recalls. Market values and third-party reliability data should be confirmed at edmunds.com, kbb.com, and Consumer Reports, and real-world fuel economy at fueleconomy.gov. Used inventory turns quickly, for current stock on a specific unit, call Sales at <a class="tel" href="tel:+16194523217"><strong>(619) 452-3217</strong></a>.</p>
+        <ul class="bullets" style="font-size:15px; color:var(--ink-soft); max-width:660px;">
+          <li><strong>Certified Pre-Owned.</strong> Program details come from Hyundai's published information at hyundaiusa.com; terms change, so we verify eligibility at intake.</li>
+          <li><strong>Recalls.</strong> Check open recalls by VIN at nhtsa.gov/recalls.</li>
+          <li><strong>Values &amp; reliability.</strong> Confirm at edmunds.com, kbb.com, and Consumer Reports; real-world fuel economy at fueleconomy.gov.</li>
+        </ul>
+
+        <p style="font-size:15px; color:var(--ink-soft); max-width:660px;">Used inventory turns quickly. For current stock on a specific unit, call Sales at <a class="tel" href="tel:+16194523217"><strong>(619) 452-3217</strong></a>.</p>
 
         <p style="font-size:15px; color:var(--ink-soft); max-width:660px;"><em>If a question about buying a used Hyundai at Dalton Hyundai National City is not answered here, call <a class="tel" href="tel:+16194523217">(619) 452-3217</a> and ask for a sales advisor, or browse used inventory at <a href="https://www.hyundaidalton.com/searchused.aspx" rel="noopener">hyundaidalton.com</a>.</em></p>
 
